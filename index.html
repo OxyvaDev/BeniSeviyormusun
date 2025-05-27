@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selam! 💖</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      overflow: hidden;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #message {
+      color: #d63384;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      min-height: 50px;
+      text-align: center;
+    }
+
+    .btn {
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    #yesBtn {
+      background-color: #ff69b4;
+      color: white;
+      width: 150px;
+      height: 60px;
+    }
+
+    #noBtn {
+      background-color: #6c757d;
+      color: white;
+      padding: 15px 30px;
+      margin-left: 20px;
+    }
+
+    @media (max-width: 480px) {
+      #container > div {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 0 auto;
+      }
+      #noBtn {
+        margin-left: 0;
+      }
+      #yesBtn, #noBtn {
+        width: 100%;
+        max-width: 300px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      #message {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h1 id="message">Beni seviyor musun?</h1>
+    <div>
+      <button class="btn" id="yesBtn">Evet 💖</button>
+      <button class="btn" id="noBtn">Hayır 😢</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+
+    let width = 150;
+    let height = 60;
+    let clickCount = 0;
+
+    const messages = [
+      "HAYIR mı?! 😤",
+      "İnanamıyorum... 😭",
+      "Lütfen evet de... 🥺",
+      "Kalbim kırılıyor 💔",
+      "Bence şaka yapıyorsun 😡",
+      "Sadece bir EVET... 🙏",
+      "Ama..",
+      "Lütfen??",
+      "Ağlarım :<",
+      "KIRILIYORUM AMA."
+    ];
+
+    noBtn.addEventListener('click', () => {
+      width *= 1.6;
+      height *= 1.6;
+
+      yesBtn.style.width = `${width}px`;
+      yesBtn.style.height = `${height}px`;
+      yesBtn.style.fontSize = `${Math.min(width / 10, 100)}px`;
+
+      if (clickCount < messages.length) {
+        message.textContent = messages[clickCount];
+      } else {
+        message.textContent = "KESİNLİKLE EVET!! ✨";
+      }
+
+      clickCount++;
+
+      if (width > window.innerWidth * 1.5 || height > window.innerHeight * 1.5) {
+        document.body.innerHTML = `
+          <button id="finalYesBtn" style="
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            font-size: 5rem;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          ">EVET 💖</button>
+        `;
+
+        document.getElementById('finalYesBtn').addEventListener('click', () => {
+          document.body.innerHTML = `
+            <div style="
+              width: 100vw;
+              height: 100vh;
+              background-color: #fff0f5;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 20px;
+              box-sizing: border-box;
+            ">
+              <h1 style="color: #d63384; margin-bottom: 10px;">BİLİYORDUMM! 💞</h1>
+              <p style="margin-bottom: 20px;">BU KADAR MÜKEMMEL OLMAK ZORUNDA MISIN?? 🤭</p>
+              <img src="Wiwi.jpg" alt="Wiwi" style="max-width: 90vw; max-height: 50vh; border-radius: 10px;" />
+            </div>
+          `;
+        });
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      document.body.innerHTML = `
+        <div style="
+          width: 100vw;
+          height: 100vh;
+          background-color: #fff0f5;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+          box-sizing: border-box;
+        ">
+          <h1 style="color: #d63384; margin-bottom: 10px;">BİLİYORDUMM! 💞</h1>
+          <p style="margin-bottom: 20px;">BU KADAR MÜKEMMEL OLMAK ZORUNDA MISIN?? 🤭</p>
+          <img src="Wiwi.jpg" alt="Wiwi" style="max-width: 90vw; max-height: 50vh; border-radius: 10px;" />
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
